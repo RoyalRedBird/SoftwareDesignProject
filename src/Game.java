@@ -9,10 +9,7 @@ public class Game {
         private int balance;
         
         public Game(){
-            String name = "";
-            int hand_value = 0;
-            int rounds_won = 0;
-            int balance = 25;
+
         }
         
 	public String getName() {
