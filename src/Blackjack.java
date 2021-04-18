@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 /**
@@ -5,7 +6,7 @@ import java.util.*;
  */
 public class Blackjack {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         ArrayList<Game> game = new ArrayList<Game>();
         Scanner input = new Scanner(System.in);
         System.out.println("-=-=-=-=-=-=-= Welcome to the game of Blackjack! =-=-=-=-=-=-=-");
@@ -21,8 +22,8 @@ public class Blackjack {
                         game.add(new Game());
                         System.out.println("Enter a custom name. If you want a default name, leave blank");
                         String custom = input.nextLine();
-                        if(custom == ""){
-                            custom = "Player " + i;               
+                        if (custom == "") {
+                            custom = "Player " + i;
                         }
                         game.get(i).setBalance(25);
                         // playerArray.add(custom)
@@ -35,32 +36,36 @@ public class Blackjack {
         }
 
         while (true) { // handles the turn system
+            game.get(0).setBalance(0);
             play(game);
             break; // TEMPORARY, DELETE LATER
         }
     }
-    
-    public static void play(ArrayList<Game> object){ // this is a test method for now
+
+    public static void play(ArrayList<Game> object) { // this is a test method for now
         Scanner input = new Scanner(System.in);
         int i = 0;
-        do{
-            try{
+        do {
+            try {
                 int balance = object.get(i).getBalance();
-                System.out.println("Enter a bet");
-                int bet = Integer.parseInt(input.nextLine());
-                if(balance - bet == 0){
-                    System.out.println("Bet cannot be negative");
-                }
-                else{
-                    object.get(i).setBalance((balance - bet));
-                    System.out.println("Your new balance is: " + object.get(i).getBalance());
+                if (balance == 0) {
                     i++;
+                } else {
+                    System.out.println("Enter a bet");
+                    int bet = Integer.parseInt(input.nextLine());
+                    if (balance - bet < 0) {
+                        System.out.println("Bet cannot be negative");
+                    } else {
+                        object.get(i).setBalance((balance - bet));
+                        System.out.println("Your new balance is: " + object.get(i).getBalance());
+                        i++;
+                    }
                 }
-            }
-            catch(Exception e){
+
+            } catch (Exception e) {
                 System.out.println("Your bet must be a number");
             }
-        } while(i < object.size());
+        } while (i < object.size());
     }
 
 }
