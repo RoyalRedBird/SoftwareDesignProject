@@ -1,3 +1,4 @@
+package blackjack;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class Blackjack {
                         if (custom == "") {
                             custom = "Player " + i;
                         }
-                        game.get(i).setBalance(25);
+                        Game.get(i).setBalance(25);
                         // playerArray.add(custom)
                     }
                     break;
