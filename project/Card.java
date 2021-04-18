@@ -11,15 +11,34 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
-public abstract class Card {
-    //default modifier for child classes
-
-    /**
-     * Students should implement this method for their specific children classes
-     *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
-    @Override
-    public abstract String toString();
+public enum Card {
+ 
+    TWO(2),
+    THREE(3),
+    FOUR(4),
+    FIVE(5),
+    SIX(6),
+    SEVEN(7),
+    EIGHT(8),
+    NINE(9),
+    TEN(10),
+    JACK(10),
+    KING(10),
+    QUEEN(10),
+    ACE(11);
+    
+    private int cardValue;
+    
+    private Card(int cardValue){
+        
+        this.cardValue = cardValue;
+        
+    }
+    
+    public int getCardValue(){
+        
+        return cardValue;
+        
+    }
 
 }
