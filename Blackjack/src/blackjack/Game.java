@@ -1,4 +1,3 @@
-package blackjack;
 
 import java.util.ArrayList;
 
@@ -8,6 +7,7 @@ public class Game {
         private int hand_value;
         private int rounds_won;
         private int balance;
+        private boolean winner;
         
         public Game(){
 
@@ -56,5 +56,13 @@ public class Game {
 	public void setRounds_won(int rounds_won) {
 		this.rounds_won = rounds_won;
 	}
+        
+        public void setWinner(boolean winner){
+            this.winner = winner;
+        }
+        
+        public boolean getWinner(){
+            return this.winner;
+        }
 
 }
