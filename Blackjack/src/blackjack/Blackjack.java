@@ -31,7 +31,8 @@ public class Blackjack {
                         game.get(i).setHand_value(0);
                         game.get(i).setWinner(false);
 
-                        // playerArray.add(custom)
+                        // *** playerArray.add(custom)
+                        // line above adds players to player array
                     }
                     break;
                 }
@@ -45,10 +46,10 @@ public class Blackjack {
             String quit = input.nextLine();
             if (quit.toLowerCase().matches("exit")) {
                 break;
-            } else {
-                bets(game, bets);
-                turns(game);
-                payout(game, bets);
+            } else { // runs the methods that handle the game
+                bets(game, bets); // betting phase
+                turns(game); // turn phase
+                payout(game, bets); // payout phase
             }
 
         }
@@ -93,11 +94,12 @@ public class Blackjack {
 
     public static void turns(ArrayList<Game> game) {
         Game dealer = new Game(); // creates a dealer
+        // *** give dealer 1 card
         Scanner input = new Scanner(System.in);
         int i = 0;
         do {
             System.out.println("Your hand value is " + game.get(i).getHand_value());
-            System.out.println("Dealer hand is " + dealer.getHand_value());
+            System.out.println("Dealer hand is " + dealer.getHand_value()); // prints dealer hand value
             if (game.get(i).getHand_value() < 21) { // checks if the user has 'BUSTED'
                 System.out.println("\n[1. Hit\t2. Stand]");
                 String userInput = input.nextLine();
@@ -105,22 +107,46 @@ public class Blackjack {
                     if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > 2) {
                         System.out.println("Enter either 1 or 2");
                     } else if (Integer.parseInt(userInput) == 1) {
-                        // run code to add a card to their hand, DO NOT INCREMENT i   
+                        // *** run code to add a card to their hand, DO NOT INCREMENT i   
                     } else {
                         i++; // if they stand, proceed to next player
                     }
                 } catch (Exception e) {
                     System.out.println("Please enter a number\n");
                 }
-            }
-            else if(game.get(i).getHand_value() == 21){
+            } else if (game.get(i).getHand_value() == 21) { // checks if user got blackjack
+                game.get(i).setWinner(true);
                 System.out.println("YOU GOT BLACKJACK!");
-            }
-            else{
+                i++;
+            } else { // player loses
+                game.get(i).setWinner(false);
                 System.out.println("Sorry, you busted!");
                 i++; // proceeds to the next players turn
             }
         } while (i < game.size());
+
+        do { // while dealer hand is less than 16
+            
+            // *** add code to add a card to dealer hand
+            // *** display dealer hand
+
+        } while (dealer.getHand_value() < 16);
+
+        i = 0;
+        while (i < game.size()) { // handles code to pick winners
+            int dealerHand = dealer.getHand_value();
+            int playerHand = game.get(i).getHand_value();
+            if(dealerHand > 21){
+                game.get(i).setWinner(true);
+            }
+            else if (playerHand > dealerHand && dealerHand <= 21) {
+                game.get(i).setWinner(true);
+            } else {
+                game.get(i).setWinner(false);
+            }
+            i++;
+        }
+
     }
 
 }
