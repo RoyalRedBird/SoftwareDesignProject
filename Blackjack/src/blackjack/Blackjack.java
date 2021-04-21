@@ -76,9 +76,8 @@ public class Blackjack {
                     if (balance - bet < 0 || bet < 0) { // checks if user bet more than balance or a negative bet
                         System.out.println("You cant bet more than you have, or a negative wager");
                     } else {
-                        object.get(i).setBalance((balance - bet)); // updates the balance of the player
                         bets.set(i, bet); // adds bet to player index
-                        System.out.println("Your new balance is: " + object.get(i).getBalance());
+                        System.out.println("Your new balance is: " + (object.get(i).getBalance()-bet) + "\n");
                         i++;
                     }
                 }
@@ -95,7 +94,10 @@ public class Blackjack {
             if (game.get(i).getWinner()) { // checks if the user won
                 int pay = game.get(i).getBalance() + bets.get(i);
                 game.get(i).setBalance(pay); // pays the user    
-
+            }
+            else{
+                int pay = game.get(i).getBalance() - bets.get(i);
+                game.get(i).setBalance(pay);
             }
         }
 
