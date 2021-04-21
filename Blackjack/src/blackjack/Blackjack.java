@@ -85,9 +85,11 @@ public class Blackjack {
 
     public static void payout(ArrayList<Game> game, ArrayList<Integer> bets) {
         for (int i = 0; i < game.size(); i++) {
+            game.get(i).setHand_value(0); // resets the users hand
             if (game.get(i).getWinner()) { // checks if the user won
                 int pay = game.get(i).getBalance() + bets.get(i);
-                game.get(i).setBalance(pay); // pays the user                
+                game.get(i).setBalance(pay); // pays the user    
+                
             }
         }
         
