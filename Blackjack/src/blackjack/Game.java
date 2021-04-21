@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Game {
 
-	private String name;
         private int hand_value;
         private int rounds_won;
         private int balance;
@@ -14,13 +13,6 @@ public class Game {
 
         }
         
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public int getBalance() {
 		return this.balance;

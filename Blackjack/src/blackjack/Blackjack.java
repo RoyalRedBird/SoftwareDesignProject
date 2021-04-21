@@ -43,6 +43,7 @@ public class Blackjack {
             players.add(new Player(""));
             players.get(i).setName(custom);
             // line above adds players to player array
+            System.out.println(custom + " added.\n");
         }
 
         while (true) { // handles the turn system
@@ -70,6 +71,7 @@ public class Blackjack {
                     i++;
                 } else {
                     System.out.println("Enter a bet " + players.get(i).getName()+ ":");
+                    System.out.println("Your balance is: $" + object.get(i).getBalance());
                     int bet = Integer.parseInt(input.nextLine());
                     if (balance - bet < 0 || bet < 0) { // checks if user bet more than balance or a negative bet
                         System.out.println("You cant bet more than you have, or a negative wager");
