@@ -35,7 +35,7 @@ public class Blackjack {
             System.out.println("Enter a custom name. If you want a default name, leave blank");
             String custom = input.nextLine();
             if (custom == "") {
-                custom = "Player " + (i+1);
+                custom = "Player " + (i + 1);
             }
             game.get(i).setBalance(25);
             game.get(i).setHand_value(0);
@@ -70,14 +70,14 @@ public class Blackjack {
                 if (balance == 0) { // won't let the user play if their balance is 0
                     i++;
                 } else {
-                    System.out.println("Enter a bet " + players.get(i).getName()+ ":");
+                    System.out.println("Enter a bet " + players.get(i).getName() + ":");
                     System.out.println("Your balance is: $" + object.get(i).getBalance());
                     int bet = Integer.parseInt(input.nextLine());
                     if (balance - bet < 0 || bet < 0) { // checks if user bet more than balance or a negative bet
                         System.out.println("You cant bet more than you have, or a negative wager");
                     } else {
                         bets.set(i, bet); // adds bet to player index
-                        System.out.println("Your new balance is: " + (object.get(i).getBalance()-bet) + "\n");
+                        System.out.println("Your new balance is: " + (object.get(i).getBalance() - bet) + "\n");
                         i++;
                     }
                 }
@@ -94,8 +94,7 @@ public class Blackjack {
             if (game.get(i).getWinner()) { // checks if the user won
                 int pay = game.get(i).getBalance() + bets.get(i);
                 game.get(i).setBalance(pay); // pays the user    
-            }
-            else{
+            } else {
                 int pay = game.get(i).getBalance() - bets.get(i);
                 game.get(i).setBalance(pay);
             }
@@ -107,16 +106,16 @@ public class Blackjack {
         Game dealer = new Game(); // creates a dealer
         System.out.print("Dealer's first card: ");
         dealer.drawCard();
-        
+
         Scanner input = new Scanner(System.in);
         int i = 0;
         do {
-            if(game.get(i).getHand_value() == 0){
+            if (game.get(i).getHand_value() == 0) {
                 game.get(i).drawCard();
                 game.get(i).drawCard();
                 // draws 2 cards for user
             }
-            System.out.println("\n" +players.get(i).getName()
+            System.out.println("\n" + players.get(i).getName()
                     + ": Your hand value is " + game.get(i).getHand_value());
             System.out.println("Dealer hand is " + dealer.getHand_value()); // prints dealer hand value
             if (game.get(i).getHand_value() < 21) { // checks if the user has 'BUSTED'
@@ -151,28 +150,34 @@ public class Blackjack {
             dealer.drawCard();
             // *** add code to add a card to dealer hand
             // *** display dealer hand
-            
 
         } while (dealer.getHand_value() < 16);
-        System.out.println("\nDealers hand: " +dealer.getHand_value() + "\n");
+        System.out.println("\nDealers hand: " + dealer.getHand_value() + "\n");
         i = 0;
         while (i < game.size()) { // handles code to pick winners
             int dealerHand = dealer.getHand_value();
             int playerHand = game.get(i).getHand_value();
-            if (dealerHand > 21 && playerHand <= 21) {
-                System.out.println(players.get(i).getName() + " won!");
-                game.get(i).setWinner(true);
- 
-            } else if (playerHand > dealerHand && dealerHand <= 21) {
-                System.out.println(players.get(i).getName() + " won!");
-                game.get(i).setWinner(true);
+            if (playerHand <= 21) {
+                if (dealerHand > 21 && playerHand <= 21) {
+                    System.out.println(players.get(i).getName() + " won!");
+                    game.get(i).setWinner(true);
 
-            } else {
+                } else if (playerHand > dealerHand && dealerHand <= 21) {
+                    System.out.println(players.get(i).getName() + " won!");
+                    game.get(i).setWinner(true);
+
+                } else {
+                    System.out.println("Sorry " + players.get(i).getName() + ", you lost.\n");
+                    game.get(i).setWinner(false);
+                }
+            }
+            else{
                 System.out.println("Sorry " + players.get(i).getName() + ", you lost.\n");
                 game.get(i).setWinner(false);
             }
+
             i++;
-            
+
         }
         dealer.resetHand();
 
