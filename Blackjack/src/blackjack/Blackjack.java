@@ -87,13 +87,18 @@ public class Blackjack {
         for (int i = 0; i < game.size(); i++) {
             if (game.get(i).getWinner()) { // checks if the user won
                 int pay = game.get(i).getBalance() + bets.get(i);
-                game.get(i).setBalance(pay); // pays the user
+                game.get(i).setBalance(pay); // pays the user                
             }
         }
+        
+            
     }
 
     public static void turns(ArrayList<Game> game) {
         Game dealer = new Game(); // creates a dealer
+        
+        dealer.drawCard();
+        
         // *** give dealer 1 card
         Scanner input = new Scanner(System.in);
         int i = 0;
@@ -107,7 +112,9 @@ public class Blackjack {
                     if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > 2) {
                         System.out.println("Enter either 1 or 2");
                     } else if (Integer.parseInt(userInput) == 1) {
-                        // *** run code to add a card to their hand, DO NOT INCREMENT i   
+                        
+                        game.get(i).drawCard();
+                        
                     } else {
                         i++; // if they stand, proceed to next player
                     }
@@ -127,6 +134,7 @@ public class Blackjack {
 
         do { // while dealer hand is less than 16
             
+            dealer.drawCard();
             // *** add code to add a card to dealer hand
             // *** display dealer hand
 
@@ -138,11 +146,15 @@ public class Blackjack {
             int playerHand = game.get(i).getHand_value();
             if(dealerHand > 21){
                 game.get(i).setWinner(true);
+                dealer.resetHand();
             }
             else if (playerHand > dealerHand && dealerHand <= 21) {
                 game.get(i).setWinner(true);
+                dealer.resetHand();
+                
             } else {
                 game.get(i).setWinner(false);
+                dealer.resetHand();
             }
             i++;
         }

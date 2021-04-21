@@ -1,4 +1,5 @@
 
+import blackjack.Card;
 import java.util.ArrayList;
 
 public class Game {
@@ -63,6 +64,107 @@ public class Game {
         
         public boolean getWinner(){
             return this.winner;
+        }
+        
+        public void resetHand(){
+            
+            this.hand_value = 0;
+            
+        }
+        
+        public void addToHand(int add){
+            
+            hand_value += add;
+            
+        }
+        
+        public void drawCard(){
+            
+            int rand = (int)(Math.random() * (13) + 1);
+            Card draw = Card.JACK;
+            int toReturn = 0;
+            
+            switch(rand){
+                
+                case 1:
+                    draw = Card.TWO;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a two.");
+                    break;
+                case 2:
+                    draw = Card.THREE;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a three.");
+                    break;
+                case 3:
+                    draw = Card.FOUR;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a four.");
+                    break;
+                case 4:
+                    draw = Card.FIVE;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a five.");
+                    break;
+                case 5:
+                    draw = Card.SIX;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a six.");
+                    break;
+                case 6:
+                    draw = Card.SEVEN;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a seven.");
+                    break;
+                case 7:
+                    draw = Card.EIGHT;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew an eight.");
+                    break;
+                case 8:
+                    draw = Card.NINE;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a nine.");
+                    break;
+                case 9:
+                    draw = Card.TEN;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a ten.");
+                    break;
+                case 10:
+                    draw = Card.JACK;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a Jack.");
+                    break;
+                case 11:
+                    draw = Card.KING;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a King.");
+                    break;
+                case 12:
+                    draw = Card.QUEEN;
+                    toReturn = draw.getCardValue();
+                    System.out.println("Drew a Queen.");
+                    break;
+                case 13:
+                    if(hand_value <= 10){
+                        
+                        System.out.println("Drew an Ace, counting it as 11.");
+                        toReturn = 11;
+                        
+                    }else{
+                        
+                        System.out.println("Drew an Ace, counting it as 1.");
+                        toReturn = 1;
+                        
+                    }
+                    break;
+                    
+            }
+            
+            
+            addToHand(toReturn);
+            
         }
 
 }
